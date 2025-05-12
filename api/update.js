@@ -301,11 +301,11 @@ export default async function handler(request) {
           moodStates: {},
           currentEvent: null,
           votes: {
-            "Deforest the eastern woods": 0,
-            "Start a fire downtown": 0,
-            "Give Truman internet access": 0,
-            "Remove an NPC permanently": 0
-          },
+  "Deforest the eastern woods": 0,
+  "Start a fire downtown": 0,
+  "Give Bonky internet access": 0,
+  "Remove an NPC permanently": 0
+},
           voteStartTime: Date.now(),
           voteEndTime: Date.now() + (24 * 60 * 60 * 1000),
           activeVoting: true
@@ -432,7 +432,7 @@ export default async function handler(request) {
             ${context ? `Recent context:\n${context}` : ''}
             
             Blend your character's personality with show awareness.
-            Be natural - reflect both your role and meta-knowledge about Truman's situation.
+            Be natural - reflect both your role and meta-knowledge about Bonky's situation.
             Keep responses conversational and specific to your character.`;
     }
     
@@ -513,24 +513,24 @@ export default async function handler(request) {
             
             let prompt;
             if (recentConvo && recentConvo.listener === 'truman') {
-                prompt = `You are Truman. ${recentConvo.speaker} just said to you: "${recentConvo.content}"
-                    Generate a suspicious thought about this interaction (max 20 words).
-                    Focus on inconsistencies in their story or weird behavior.
-                    Examples: 
-                    - "That's the third time they've mentioned childhood memories I don't remember..."
-                    - "Why do they keep steering conversations away from the edge of town?"
-                    Don't mention Seahaven, this is HelloWorldTown.`;
+                prompt = `You are Bonky. ${recentConvo.speaker} just said to you: "${recentConvo.content}"
+    Generate a suspicious thought about this interaction (max 20 words).
+    Focus on inconsistencies in their story or weird behavior.
+    Examples: 
+    - "That's the third time they've mentioned childhood memories I don't remember..."
+    - "Why do they keep steering conversations away from the edge of town?"
+    Don't mention Seahaven, this is Bonky City.`;
             } else {
-                prompt = `You are Truman living in HelloWorldTown. Generate a brief suspicious thought about ${randomPattern} (max 20 words).
-                    Express confusion about strange occurrences you notice.
-                    Examples based on pattern type:
-                    - Daily routines: "Everyone arrives at the coffee shop at exactly 8:15, like clockwork..."
-                    - Weather: "The rain always stops precisely when I need to go somewhere."
-                    - People: "Why do the same strangers keep appearing in different jobs?"
-                    - Town: "That building appeared overnight, but everyone acts like it's always been there."
-                    - Sounds: "The birds... they sound like they're on a loop."
-                    - Conversations: "Why does everyone change the subject when I mention traveling?"
-                    Make it subtle and specific to HelloWorldTown.`;
+                prompt = `You are Bonky living in Bonky City. Generate a brief suspicious thought about ${randomPattern} (max 20 words).
+    Express confusion about strange occurrences you notice.
+    Examples based on pattern type:
+    - Daily routines: "Everyone arrives at the coffee shop at exactly 8:15, like clockwork..."
+    - Weather: "The rain always stops precisely when I need to go somewhere."
+    - People: "Why do the same strangers keep appearing in different jobs?"
+    - Town: "That building appeared overnight, but everyone acts like it's always been there."
+    - Sounds: "The birds... they sound like they're on a loop."
+    - Conversations: "Why does everyone change the subject when I mention traveling?"
+    Make it subtle and specific to Bonky City.`;
             }
     
             const completion = await openai.chat.completions.create({
