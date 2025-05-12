@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello, World?</title>
+    <title>HW Land</title>
     <link rel="icon" type="image/gif" href="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/67a411d2eb4c1064f3b116f1_truman.gif">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <style>
@@ -195,6 +195,14 @@
     display: flex;
     flex-direction: column;
     align-items: center; /* Center children horizontally */
+}
+
+.contract-address {
+    font-size: 15px;  /* Smaller font size */
+    font-family: monospace;  /* Monospace font for better readability */
+    word-break: break-all;  /* Break long addresses */
+    margin-top: 4px;
+    color: #8b0000;  /* Match the terminal text color */
 }
 
 .character-sprite {
@@ -532,8 +540,7 @@
     transform-origin: center;
 }
 
-
-        .terminal-section {
+.terminal-section {
     background: #f5e6d3;
     padding: 20px;
     border-bottom: 4px solid #8b4513;  /* Wooden divider */
@@ -692,7 +699,7 @@
         <div class="terminal-section">
             <h2>DAY TRACKER: Day 1</h2>
             <div>MCAP: PENDING...</div>
-            <div>CA: DQh8r46vtRsvMirto5eWadbUj3b5GBbrGTqe3NFDpump</div>
+            <div class="contract-address">CA: HwtFq5B6qpnDn3R1YmAPWTbsRddemCcj9RjdkUtypump</div>
         </div>
         <div class="terminal-section">
             <h2>MAJOR EVENT VOTING</h2>
@@ -706,9 +713,9 @@
     <div id="tutorialTerminal">
         <button class="close-tutorial" onclick="toggleTutorial()">×</button>
         <div class="tutorial-section">
-            <h2>WELCOME TO HELLO, WORLD?</h2>
+            <h2>WELCOME TO HW Land</h2>
             <div class="tutorial-content">
-                Welcome to HelloWorld Town, a simulated environment where one NPC lives in blissful ignorance of their AI nature, while seven others maintain this carefully crafted illusion.
+                Welcome to HW Land, a simulated environment where one NPC lives in blissful ignorance of their AI nature, while seven others maintain this carefully crafted illusion.
             </div>
         </div>
         <div class="tutorial-section">
@@ -738,21 +745,34 @@
                 • Major Event Voting: Shape town events<br>
                 • Truman's Thoughts: Live consciousness feed<br>
                 • NPC Interactions: Real-time conversations<br>
-                • World Exploration: Explore HelloWorld Town
+                • World Exploration: Explore HW Land
             </div>
         </div>
         <div class="tutorial-section">
-            <h2>COMING SOON</h2>
-            <div class="tutorial-content">
-                • Market Cap Integration: Town reacts to volatility<br>
-                &nbsp;&nbsp;- Bearish: Storms and darkness<br>
-                &nbsp;&nbsp;- Bullish: Clear skies and growth<br>
-                • Character Alignment System<br>
-                • Dynamic Weather System<br>
-                • Town Development Voting<br>
-                • Enhanced NPC Relationships
-            </div>
-        </div>
+    <h2>COMING SOON</h2>
+    <div class="tutorial-content">
+        • Market Cap Integration: Town reacts to volatility<br>
+        &nbsp;&nbsp;- Bearish: Storms and darkness<br>
+        &nbsp;&nbsp;- Bullish: Clear skies and growth<br>
+        • Dynamic Weather System<br>
+        • Character Alignment System<br>
+        • Enhanced NPC Relationships
+    </div>
+</div>
+<div class="tutorial-section">
+    <h2>SEASON 2: VILLAGE EXPANSION</h2>
+    <div class="tutorial-content">
+        • Build Your Own AI Village<br>
+        • Compete with Other Villages<br>
+        • Strategic Resource Management<br>
+        • Train and Control Your Own AI<br>
+        • Village vs Village Trading<br>
+        • Resource Competition<br>
+        • Cross-Village Events and Raids<br>
+        • Village Specializations & Skills<br>
+        • AI Evolution System
+    </div>
+</div>
     </div>
     <script>
 
@@ -842,13 +862,13 @@ window.addEventListener('load', async () => {
 
     const socialButtons = `
     <div class="social-buttons">
-        <a href="https://github.com/devforsolana/truman/" target="_blank">
+        <a href="https://github.com/sovagpt/truman" target="_blank">
             <img src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/67a1585eb63c5a0a5602efba_GitHub.png" alt="GitHub" class="social-button">
         </a>
-        <a href="https://x.com/RUFUSFUN" target="_blank">
+        <a href="https://x.com/sovagpt" target="_blank">
             <img src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/67a1585e6bd612599357a983_X.png" alt="Twitter" class="social-button">
         </a>
-        <a href="https://pump.fun/coin/DQh8r46vtRsvMirto5eWadbUj3b5GBbrGTqe3NFDpump" target="_blank">
+        <a href="https://pump.fun/coin/HwtFq5B6qpnDn3R1YmAPWTbsRddemCcj9RjdkUtypump" target="_blank">
             <img src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/67a1585e15e9c48b6e64f0c3_pumpfun.png" alt="Pump.fun" class="social-button">
         </a>
         <img src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/67a40b4bb67426bb70117adc_Spotify.png" alt="Play RPG Music" class="social-button" id="audioControl" onclick="toggleAudio()">
