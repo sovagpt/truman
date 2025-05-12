@@ -1192,6 +1192,8 @@ function showThoughtHistory(spriteData) {
         existingProfile.remove();
     }
 
+    const displayName = spriteData.id === 'truman' ? 'BONKY' : spriteData.id.toUpperCase();
+
     // Create new profile container
     const profile = document.createElement('div');
     profile.className = 'npc-profile';
@@ -1205,62 +1207,70 @@ function showThoughtHistory(spriteData) {
 
     // Format conversations with proper direction indicators
     const conversationHistory = gameState.conversations
-        .filter(c => c.speaker === spriteData.id || c.listener === spriteData.id)
-        .slice(-10)
-        .reverse()
-        .map(conv => {
-            const isOutgoing = conv.speaker === spriteData.id;
-            const directionLabel = isOutgoing 
-                ? `<span class="dialogue-direction">To ${conv.listener}:</span>`
-                : `<span class="dialogue-direction">From ${conv.speaker}:</span>`;
-            
-            // Clean up the content by removing speaker prefixes and any quote marks
-            const cleanContent = conv.content
-                .replace(/^[^:]*:\s*/, '')    // Remove "Speaker:" prefix
-                .replace(/^"/, '')            // Remove opening quote
-                .replace(/" [^:]+:/, '')      // Remove any mid-message speaker labels
-                .replace(/"/g, '')            // Remove all remaining quotes
-                .trim();                      // Clean up any extra whitespace
+    .filter(c => c.speaker === spriteData.id || c.listener === spriteData.id)
+    .slice(-10)
+    .reverse()
+    .map(conv => {
+        const isOutgoing = conv.speaker === spriteData.id;
+        
+        // Replace "truman" with "Bonky" in conversation labels
+        let speakerName = conv.speaker;
+        let listenerName = conv.listener;
+        
+        if (speakerName === 'truman') speakerName = 'Bonky';
+        if (listenerName === 'truman') listenerName = 'Bonky';
+        
+        const directionLabel = isOutgoing 
+            ? `<span class="dialogue-direction">To ${listenerName}:</span>`
+            : `<span class="dialogue-direction">From ${speakerName}:</span>`;
+        
+        // Clean up the content by removing speaker prefixes and any quote marks
+        const cleanContent = conv.content
+            .replace(/^[^:]*:\s*/, '')    // Remove "Speaker:" prefix
+            .replace(/^"/, '')            // Remove opening quote
+            .replace(/" [^:]+:/, '')      // Remove any mid-message speaker labels
+            .replace(/"/g, '')            // Remove all remaining quotes
+            .trim();                      // Clean up any extra whitespace
 
-            return `
-                <div class="conversation-entry ${isOutgoing ? 'outgoing' : 'incoming'}">
-                    <div class="timestamp">
-                        ${new Date(conv.timestamp).toLocaleString()}
-                    </div>
-                    <div class="conversation-text">
-                        ${directionLabel}
-                        <div class="dialogue-content">
-                            ${cleanContent}
-                        </div>
+        return `
+            <div class="conversation-entry ${isOutgoing ? 'outgoing' : 'incoming'}">
+                <div class="timestamp">
+                    ${new Date(conv.timestamp).toLocaleString()}
+                </div>
+                <div class="conversation-text">
+                    ${directionLabel}
+                    <div class="dialogue-content">
+                        ${cleanContent}
                     </div>
                 </div>
-            `;
-        });
+            </div>
+        `;
+    });
 
     profile.innerHTML = `
-        <div class="npc-header">
-            <span>${spriteData.id.toUpperCase()}</span>
-            <button class="npc-close" onclick="this.parentElement.parentElement.remove()">×</button>
+    <div class="npc-header">
+        <span>${displayName}</span>
+        <button class="npc-close" onclick="this.parentElement.parentElement.remove()">×</button>
+    </div>
+    <div class="npc-content">
+        <div class="npc-sprite-preview">
+            <div class="sprite" style="
+                width: 64px;
+                height: 64px;
+                background-image: url('/sprites/${spriteData.type}.png');
+                background-size: 1856px 512px;
+                background-position: ${spritePosition};
+                image-rendering: pixelated;
+            "></div>
         </div>
-        <div class="npc-content">
-            <div class="npc-sprite-preview">
-                <div class="sprite" style="
-                    width: 64px;
-                    height: 64px;
-                    background-image: url('/sprites/${spriteData.type}.png');
-                    background-size: 1856px 512px;
-                    background-position: ${spritePosition};
-                    image-rendering: pixelated;
-                "></div>
-            </div>
-            <div class="npc-description">
-                ${npcDescription}
-            </div>
+        <div class="npc-description">
+            ${npcDescription}
         </div>
-        <div class="npc-conversations">
-            ${conversationHistory.join('')}
-        </div>
-    `;
+    </div>
+    <div class="npc-conversations">
+        ${conversationHistory.join('')}
+    </div>
+`;
 
     document.body.appendChild(profile);
     profile.style.display = 'block';
@@ -1274,7 +1284,7 @@ function getNPCDescription(id) {
     const descriptions = {
         sarah: "A wise village elder who helps maintain the illusion. Often gives philosophical advice.",
         michael: "The local shopkeeper who keeps track of the town's activities.",
-        emma: "A friendly neighbor who specializes in distracting Bonky from suspicious events.",
+        emma: "A friendly neighbor who specializes in distracting Truman from suspicious events.",
         james: "The town's historian who helps create and maintain backstories.",
         olivia: "A scientist working on maintaining the simulation's stability.",
         william: "The local gardener who ensures everything looks natural and perfect.",
