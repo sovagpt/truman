@@ -68,7 +68,7 @@ export default async function handler(req) {
       gameState.votes = {
         "Deforest the eastern woods": 0,
         "Start a fire downtown": 0,
-        "Give Truman internet access": 0,
+        "Give Bonky internet access": 0,
         "Remove an NPC permanently": 0
       };
       gameState.voteStartTime = Date.now();
