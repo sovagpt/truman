@@ -519,9 +519,9 @@ export default async function handler(request) {
     Examples: 
     - "That's the third time they've mentioned childhood memories I don't remember..."
     - "Why do they keep steering conversations away from the edge of town?"
-    Don't mention Seahaven, this is Bonky City.`;
+    Don't mention Seahaven, this is Full Port Town.`;
             } else {
-                prompt = `You are Bonky living in Bonky City. Generate a brief suspicious thought about ${randomPattern} (max 20 words).
+                prompt = `You are Bonky living in Full Port Town. Generate a brief suspicious thought about ${randomPattern} (max 20 words).
     Express confusion about strange occurrences you notice.
     Examples based on pattern type:
     - Daily routines: "Everyone arrives at the coffee shop at exactly 8:15, like clockwork..."
@@ -530,7 +530,7 @@ export default async function handler(request) {
     - Town: "That building appeared overnight, but everyone acts like it's always been there."
     - Sounds: "The birds... they sound like they're on a loop."
     - Conversations: "Why does everyone change the subject when I mention traveling?"
-    Make it subtle and specific to Bonky City.`;
+    Make it subtle and specific to Full Port Town.`;
             }
     
             const completion = await openai.chat.completions.create({
