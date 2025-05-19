@@ -303,7 +303,7 @@ export default async function handler(request) {
           votes: {
   "Deforest the eastern woods": 0,
   "Start a fire downtown": 0,
-  "Give Bonky internet access": 0,
+  "Give Truman internet access": 0,
   "Remove an NPC permanently": 0
 },
           voteStartTime: Date.now(),
@@ -432,7 +432,7 @@ export default async function handler(request) {
             ${context ? `Recent context:\n${context}` : ''}
             
             Blend your character's personality with show awareness.
-            Be natural - reflect both your role and meta-knowledge about Bonky's situation.
+            Be natural - reflect both your role and meta-knowledge about truman's situation.
             Keep responses conversational and specific to your character.`;
     }
     
@@ -513,7 +513,7 @@ export default async function handler(request) {
             
             let prompt;
             if (recentConvo && recentConvo.listener === 'truman') {
-                prompt = `You are Bonky. ${recentConvo.speaker} just said to you: "${recentConvo.content}"
+                prompt = `You are truman. ${recentConvo.speaker} just said to you: "${recentConvo.content}"
     Generate a suspicious thought about this interaction (max 20 words).
     Focus on inconsistencies in their story or weird behavior.
     Examples: 
@@ -521,7 +521,7 @@ export default async function handler(request) {
     - "Why do they keep steering conversations away from the edge of town?"
     Don't mention Seahaven, this is Full Port Town.`;
             } else {
-                prompt = `You are Bonky living in Full Port Town. Generate a brief suspicious thought about ${randomPattern} (max 20 words).
+                prompt = `You are truman living in Full Port Town. Generate a brief suspicious thought about ${randomPattern} (max 20 words).
     Express confusion about strange occurrences you notice.
     Examples based on pattern type:
     - Daily routines: "Everyone arrives at the coffee shop at exactly 8:15, like clockwork..."
