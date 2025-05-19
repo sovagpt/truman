@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bonky City</title>
+    <title>truman City</title>
     <link rel="icon" type="image/gif" href="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/67a411d2eb4c1064f3b116f1_truman.gif">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <style>
@@ -706,24 +706,24 @@
             <div id="voting-content"></div>
         </div>
         <div class="terminal-section">
-            <h2>TERMINAL OF BONKY THOUGHTS</h2>
+            <h2>TERMINAL OF truman THOUGHTS</h2>
             <div id="thoughts-content"></div>
         </div>
     </div>
     <div id="tutorialTerminal">
         <button class="close-tutorial" onclick="toggleTutorial()">×</button>
         <div class="tutorial-section">
-            <h2>WELCOME TO Bonky City</h2>
+            <h2>WELCOME TO truman City</h2>
             <div class="tutorial-content">
-                Welcome to Bonky City, a simulated environment where one NPC lives in blissful ignorance of their AI nature, while seven others maintain this carefully crafted illusion.
+                Welcome to truman City, a simulated environment where one NPC lives in blissful ignorance of their AI nature, while seven others maintain this carefully crafted illusion.
             </div>
         </div>
         <div class="tutorial-section">
             <h2>THE PREMISE</h2>
             <div class="tutorial-content">
-                • Bonky is unaware he's an AI<br>
+                • truman is unaware he's an AI<br>
                 • 7 other NPCs maintain the illusion<br>
-                • Observe how long until Bonky discovers the truth<br>
+                • Observe how long until truman discovers the truth<br>
                 • Vote on events that could impact his awareness<br>
                 • Monitor his thoughts for signs of realization
             </div>
@@ -734,7 +734,7 @@
                 • Navigate using the minimap arrows<br>
                 • Click NPCs to view their profiles and conversations<br>
                 • Participate in world-changing votes<br>
-                • Track Bonky's evolving consciousness<br>
+                • Track truman's evolving consciousness<br>
                 • Toggle town ambiance with the music button
             </div>
         </div>
@@ -743,9 +743,9 @@
             <div class="tutorial-content">
                 • Day Tracker: Monitor simulation progress<br>
                 • Major Event Voting: Shape town events<br>
-                • Bonky's Thoughts: Live consciousness feed<br>
+                • truman's Thoughts: Live consciousness feed<br>
                 • NPC Interactions: Real-time conversations<br>
-                • World Exploration: Explore Bonky City
+                • World Exploration: Explore truman City
             </div>
         </div>
         <div class="tutorial-section">
@@ -865,7 +865,7 @@ window.addEventListener('load', async () => {
         <a href="https://github.com/sovagpt" target="_blank">
             <img src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/67a1585eb63c5a0a5602efba_GitHub.png" alt="GitHub" class="social-button">
         </a>
-        <a href="https://x.com/bonkycity" target="_blank">
+        <a href="https://x.com/trumancity" target="_blank">
             <img src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/67a1585e6bd612599357a983_X.png" alt="Twitter" class="social-button">
         </a>
         <a href="https://letsbonk.fun/token/5FCApERr2iQgPpyjqaQvNNNhftAtoWMrxU215Bpwbonk" target="_blank">
@@ -909,7 +909,7 @@ document.body.insertAdjacentHTML('beforeend', socialButtons);
         "Initializing simulation...",
         "Loading NPCs...",
         "Establishing consciousness patterns...",
-        "Preparing Bonky's world...",
+        "Preparing truman's world...",
         "Reality check complete."
     ];
     
@@ -1192,7 +1192,7 @@ function showThoughtHistory(spriteData) {
         existingProfile.remove();
     }
 
-    const displayName = spriteData.id === 'truman' ? 'BONKY' : spriteData.id.toUpperCase();
+    const displayName = spriteData.id === 'truman' ? 'truman' : spriteData.id.toUpperCase();
 
     // Create new profile container
     const profile = document.createElement('div');
@@ -1213,12 +1213,12 @@ function showThoughtHistory(spriteData) {
     .map(conv => {
         const isOutgoing = conv.speaker === spriteData.id;
         
-        // Replace "truman" with "Bonky" in conversation labels
+        // Replace "truman" with "truman" in conversation labels
         let speakerName = conv.speaker;
         let listenerName = conv.listener;
         
-        if (speakerName === 'truman') speakerName = 'Bonky';
-        if (listenerName === 'truman') listenerName = 'Bonky';
+        if (speakerName === 'truman') speakerName = 'truman';
+        if (listenerName === 'truman') listenerName = 'truman';
         
         const directionLabel = isOutgoing 
             ? `<span class="dialogue-direction">To ${listenerName}:</span>`
@@ -1278,20 +1278,20 @@ function showThoughtHistory(spriteData) {
 
 function getNPCDescription(id) {
     if (id === 'truman') {
-        return "A curious individual who's beginning to question the nature of reality. Unaware of the true nature of Bonky City.";
+        return "A curious individual who's beginning to question the nature of reality. Unaware of the true nature of truman City.";
     }
     
     const descriptions = {
         sarah: "A wise village elder who helps maintain the illusion. Often gives philosophical advice.",
-        michael: "The local shopkeeper who keeps track of Bonky City's activities.",
-        emma: "A friendly neighbor who specializes in distracting Bonky from suspicious events.",
-        james: "The town's historian who helps create and maintain backstories for Bonky City.",
-        olivia: "A scientist working on maintaining the simulation's stability within Bonky City.",
-        william: "The local gardener who ensures Bonky City looks natural and perfect.",
-        sophia: "A wandering storyteller who helps reinforce Bonky City's narrative."
+        michael: "The local shopkeeper who keeps track of truman City's activities.",
+        emma: "A friendly neighbor who specializes in distracting truman from suspicious events.",
+        james: "The town's historian who helps create and maintain backstories for truman City.",
+        olivia: "A scientist working on maintaining the simulation's stability within truman City.",
+        william: "The local gardener who ensures truman City looks natural and perfect.",
+        sophia: "A wandering storyteller who helps reinforce truman City's narrative."
     };
 
-    return descriptions[id] || "A mysterious resident of Bonky City.";
+    return descriptions[id] || "A mysterious resident of truman City.";
 }
 
 async function initGame() {
@@ -1719,7 +1719,7 @@ function showSpeechBubble(spriteId, text) {
     <div class="character-bar">
         <div class="character-slot" data-character="truman" onclick="focusCharacter('truman')">
             <div class="character-sprite" style="background-image: url('/sprites/TrumanSprite.png')"></div>
-            <div class="character-name">BONKY</div>
+            <div class="character-name">truman</div>
         </div>
         <div class="character-slot" data-character="sarah" onclick="focusCharacter('sarah')">
             <div class="character-sprite" style="background-image: url('/sprites/SarahSprite.png')"></div>
