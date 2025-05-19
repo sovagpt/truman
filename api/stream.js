@@ -88,7 +88,7 @@ export default async function handler(request) {
         votes: {
           "Deforest the eastern woods": 0,
           "Start a fire downtown": 0,
-          "Give Frank internet access": 0,
+          "Give Truman internet access": 0,
           "Remove an NPC permanently": 0
         },
         voteStartTime: Date.now(),
