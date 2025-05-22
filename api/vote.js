@@ -30,7 +30,7 @@ async function concludeVoting(gameState) {
   const trumanSprite = gameState.sprites.find(s => s.isUnaware);
   if (trumanSprite) {
     try {
-      const prompt = `You live in Seahaven Town. Write a personal diary thought about ${winningOption}. Share something that strikes you as strange about the town or its people, but try to rationalize it in a natural way. Focus on small oddities that make you question things.`;
+      const prompt = `You live in Simulife. Write a personal diary thought about ${winningOption}. Share something that strikes you as strange about the town or its people, but try to rationalize it in a natural way. Focus on small oddities that make you question things.`;
       
       const completion = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
