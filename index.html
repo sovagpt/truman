@@ -713,9 +713,9 @@
     <div id="tutorialTerminal">
         <button class="close-tutorial" onclick="toggleTutorial()">×</button>
         <div class="tutorial-section">
-            <h2>WELCOME TO Seavhaven Town</h2>
+            <h2>WELCOME TO Simulife</h2>
             <div class="tutorial-content">
-                Welcome to Seavhaven Town, a simulated environment where one NPC lives in blissful ignorance of their AI nature, while seven others maintain this carefully crafted illusion.
+                Welcome to Simulife, a simulated environment where one NPC lives in blissful ignorance of their AI nature, while seven others maintain this carefully crafted illusion.
             </div>
         </div>
         <div class="tutorial-section">
@@ -745,7 +745,7 @@
                 • Major Event Voting: Shape town events<br>
                 • truman's Thoughts: Live consciousness feed<br>
                 • NPC Interactions: Real-time conversations<br>
-                • World Exploration: Explore Seavhaven Town
+                • World Exploration: Explore Simulife
             </div>
         </div>
         <div class="tutorial-section">
@@ -1278,20 +1278,20 @@ function showThoughtHistory(spriteData) {
 
 function getNPCDescription(id) {
     if (id === 'truman') {
-        return "A curious individual who's beginning to question the nature of reality. Unaware of the true nature of Seavhaven Town.";
+        return "A curious individual who's beginning to question the nature of reality. Unaware of the true nature of Simulife.";
     }
     
     const descriptions = {
         sarah: "A wise village elder who helps maintain the illusion. Often gives philosophical advice.",
-        michael: "The local shopkeeper who keeps track of Seavhaven Town's activities.",
+        michael: "The local shopkeeper who keeps track of Simulife's activities.",
         emma: "A friendly neighbor who specializes in distracting truman from suspicious events.",
-        james: "The town's historian who helps create and maintain backstories for Seavhaven Town.",
-        olivia: "A scientist working on maintaining the simulation's stability within Seavhaven Town.",
-        william: "The local gardener who ensures Seavhaven Town looks natural and perfect.",
-        sophia: "A wandering storyteller who helps reinforce Seavhaven Town's narrative."
+        james: "The town's historian who helps create and maintain backstories for Simulife.",
+        olivia: "A scientist working on maintaining the simulation's stability within Simulife.",
+        william: "The local gardener who ensures Simulife looks natural and perfect.",
+        sophia: "A wandering storyteller who helps reinforce Simulife's narrative."
     };
 
-    return descriptions[id] || "A mysterious resident of Seavhaven Town.";
+    return descriptions[id] || "A mysterious resident of Simulife.";
 }
 
 async function initGame() {
