@@ -16,72 +16,95 @@ export default async function handler(request) {
     if (!gameState) {
       gameState = {
         sprites: [
-          {
-            id: 'truman',
-            x: 500,
-            y: 500,
-            type: 'TrumanSprite',
-            isUnaware: true,
-            thoughts: [],
-            memories: []
-          },
-          {
-            id: 'sarah',
-            x: 450,
-            y: 450,
-            type: 'SarahSprite',
-            thoughts: [],
-            memories: []
-          },
-          {
-            id: 'michael',
-            x: 550,
-            y: 550,
-            type: 'MichaelSprite',
-            thoughts: [],
-            memories: []
-          },
-          {
-            id: 'emma',
-            x: 400,
-            y: 500,
-            type: 'EmmaSprite',
-            thoughts: [],
-            memories: []
-          },
-          {
-            id: 'james',
-            x: 600,
-            y: 400,
-            type: 'JamesSprite',
-            thoughts: [],
-            memories: []
-          },
-          {
-            id: 'olivia',
-            x: 500,
-            y: 600,
-            type: 'OliviaSprite',
-            thoughts: [],
-            memories: []
-          },
-          {
-            id: 'william',
-            x: 350,
-            y: 350,
-            type: 'WilliamSprite',
-            thoughts: [],
-            memories: []
-          },
-          {
-            id: 'sophia',
-            x: 650,
-            y: 650,
-            type: 'SophiaSprite',
-            thoughts: [],
-            memories: []
-          }
-        ],
+  {
+    id: 'frankdegods',
+    x: 500,
+    y: 500,
+    type: 'FrankDeGodsSprite',
+    isUnaware: true,
+    suspicionLevel: 0,
+    personalityType: 'frankdegods',
+    thoughts: [],
+    memories: []
+  },
+  {
+    id: 'cupsey',
+    x: 450,
+    y: 450,
+    type: 'CupseySprite',
+    isUnaware: true,
+    suspicionLevel: 0,
+    personalityType: 'cupsey',
+    thoughts: [],
+    memories: []
+  },
+  {
+    id: 'jalen',
+    x: 550,
+    y: 550,
+    type: 'JalenSprite',
+    isUnaware: true,
+    suspicionLevel: 0,
+    personalityType: 'jalen',
+    thoughts: [],
+    memories: []
+  },
+  {
+    id: 'orangie',
+    x: 400,
+    y: 500,
+    type: 'OrangieSprite',
+    isUnaware: true,
+    suspicionLevel: 0,
+    personalityType: 'orangie',
+    thoughts: [],
+    memories: []
+  },
+  {
+    id: 'alon',
+    x: 600,
+    y: 400,
+    type: 'AlonSprite',
+    isUnaware: true,
+    suspicionLevel: 0,
+    personalityType: 'alon',
+    thoughts: [],
+    memories: []
+  },
+  {
+    id: 'zachxbt',
+    x: 500,
+    y: 600,
+    type: 'ZachXBTSprite',
+    isUnaware: true,
+    suspicionLevel: 0,
+    personalityType: 'zachxbt',
+    thoughts: [],
+    memories: []
+  },
+  {
+    id: 'west',
+    x: 350,
+    y: 350,
+    type: 'WestSprite',
+    isUnaware: true,
+    suspicionLevel: 0,
+    personalityType: 'west',
+    thoughts: [],
+    memories: []
+  },
+  {
+    id: 'assassin',
+    x: 650,
+    y: 650,
+    type: 'AssassinSprite',
+    isUnaware: true,
+    suspicionLevel: 0,
+    personalityType: 'assassin',
+    thoughts: [],
+    memories: []
+  }
+],
         time: Date.now(),
         thoughts: [],
         currentEvent: null,
