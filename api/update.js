@@ -19,14 +19,26 @@ export const config = {
   runtime: 'edge'
 }
 
-function selectNewTopic(sprite1, sprite2, isTrumanPresent) {
-  const topics = isTrumanPresent ? [
+function selectNewTopic(sprite1, sprite2) {
+  const topics = [
     'local events', 'hobbies', 'weather', 'town life', 
-    'daily activities', 'community news'
-  ] : [
-    'show logistics', 'token performance', 'simulation maintenance',
-    'personal matters', 'production issues'
+    'daily activities', 'community news', 'strange occurrences',
+    'memory inconsistencies', 'reality questions', 'local mysteries'
   ];
+
+  function getPersonalityTraits(characterId) {
+    const personalities = {
+        'frankdegods': 'NFT creator and entrepreneur, sophisticated, scammer, strategic thinker',
+        'cupsey': 'Crypto trader and analyst, sharp wit, market-focused mindset',
+        'jalen': 'british memecoin trader, energetic, competitive personality',
+        'orangie': 'Creative content creator, artistic, trend-aware influencer',
+        'alon': 'Tech entrepreneur and investor, analytical, forward-thinking',
+        'zachxbt': 'Blockchain investigator, detail-oriented, truth-seeking researcher',
+        'west': 'Cultural commentator, philosophical, observant social critic',
+        'assassin': 'Mysterious internet figure, secretive, observant and calculating'
+    };
+    return personalities[characterId] || 'Generic internet personality';
+}
 
   const usedTopics = new Set(sprite1.recentTopics || []);
   const availableTopics = topics.filter(t => !usedTopics.has(t));
@@ -145,6 +157,35 @@ function calculateMovement(sprite, targetSprite, gameState) {
   };
  }
 
+function checkWinCondition(gameState) {
+    const winner = gameState.sprites.find(sprite => (sprite.suspicionLevel || 0) >= 100);
+    if (winner) {
+        gameState.gameEnded = true;
+        gameState.winner = winner.id;
+        gameState.endTime = Date.now();
+        
+        if (!gameState.thoughts) gameState.thoughts = [];
+        gameState.thoughts.push({
+            spriteId: winner.id,
+            thought: `I... I think I'm an AI copy of ${winner.id}. This whole reality is simulated!`,
+            suspicionLevel: 100,
+            timestamp: Date.now(),
+            isWinningMoment: true
+        });
+    }
+}
+
+export default async function handler(request) {
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type'
+      }
+    })
+  }
+
 export default async function handler(request) {
   if (request.method === 'OPTIONS') {
     return new Response(null, {
@@ -170,11 +211,13 @@ export default async function handler(request) {
       gameState = {
           sprites: [
               {
-                  id: 'truman',
+                  id: 'frankdegods',
                   x: 450,
                   y: 500,
-                  type: 'TrumanSprite',
+                  type: 'FrankDeGodsSprite',
                   isUnaware: true,
+                  suspicionLevel: 0,
+                  personalityType: 'frankdegods',
                   thoughts: [],
                   conversations: [],
                   memories: [],
@@ -186,10 +229,13 @@ export default async function handler(request) {
                   lastInteraction: {}
               },
               {
-                  id: 'sarah',
+                  id: 'cupsey',
                   x: 450,
                   y: 450,
-                  type: 'SarahSprite',
+                  type: 'CupseySprite',
+                  isUnaware: true,
+                  suspicionLevel: 0,
+                  personalityType: 'cupsey',
                   thoughts: [],
                   conversations: [],
                   memories: [],
@@ -201,10 +247,13 @@ export default async function handler(request) {
                   lastInteraction: {}
               },
               {
-                  id: 'michael',
+                  id: 'jalen',
                   x: 550,
                   y: 550,
-                  type: 'MichaelSprite',
+                  type: 'JalenSprite',
+                  isUnaware: true,
+                  suspicionLevel: 0,
+                  personalityType: 'jalen',
                   thoughts: [],
                   conversations: [],
                   memories: [],
@@ -216,10 +265,13 @@ export default async function handler(request) {
                   lastInteraction: {}
               },
               {
-                  id: 'emma',
+                  id: 'orangie',
                   x: 400,
                   y: 500,
-                  type: 'EmmaSprite',
+                  type: 'OrangieSprite',
+                  isUnaware: true,
+                  suspicionLevel: 0,
+                  personalityType: 'orangie',
                   thoughts: [],
                   conversations: [],
                   memories: [],
@@ -231,10 +283,13 @@ export default async function handler(request) {
                   lastInteraction: {}
               },
               {
-                  id: 'james',
+                  id: 'alon',
                   x: 600,
                   y: 400,
-                  type: 'JamesSprite',
+                  type: 'AlonSprite',
+                  isUnaware: true,
+                  suspicionLevel: 0,
+                  personalityType: 'alon',
                   thoughts: [],
                   conversations: [],
                   memories: [],
@@ -246,10 +301,13 @@ export default async function handler(request) {
                   lastInteraction: {}
               },
               {
-                  id: 'olivia',
+                  id: 'zachxbt',
                   x: 500,
                   y: 600,
-                  type: 'OliviaSprite',
+                  type: 'ZachXBTSprite',
+                  isUnaware: true,
+                  suspicionLevel: 0,
+                  personalityType: 'zachxbt',
                   thoughts: [],
                   conversations: [],
                   memories: [],
@@ -261,10 +319,13 @@ export default async function handler(request) {
                   lastInteraction: {}
               },
               {
-                  id: 'william',
+                  id: 'west',
                   x: 250,
                   y: 550,
-                  type: 'WilliamSprite',
+                  type: 'WestSprite',
+                  isUnaware: true,
+                  suspicionLevel: 0,
+                  personalityType: 'west',
                   thoughts: [],
                   conversations: [],
                   memories: [],
@@ -276,10 +337,13 @@ export default async function handler(request) {
                   lastInteraction: {}
               },
               {
-                  id: 'sophia',
+                  id: 'assassin',
                   x: 650,
                   y: 650,
-                  type: 'SophiaSprite',
+                  type: 'AssassinSprite',
+                  isUnaware: true,
+                  suspicionLevel: 0,
+                  personalityType: 'assassin',
                   thoughts: [],
                   conversations: [],
                   memories: [],
@@ -313,7 +377,6 @@ export default async function handler(request) {
     }
 
     async function generateDialogue(sprite1, sprite2) {
-      const isTrumanPresent = sprite1.id === 'truman' || sprite2.id === 'truman';
       const recentHistory = (gameState.conversationHistory || [])
         .filter(c => (c.speaker === sprite1.id && c.listener === sprite2.id) || 
                      (c.speaker === sprite2.id && c.listener === sprite1.id))
@@ -390,51 +453,29 @@ export default async function handler(request) {
         timeOfDay < 18 ? 'afternoon' : 'evening';
     
       const currentTopic = sprite1.recentTopics?.[sprite1.recentTopics.length - 1] || 
-                          selectNewTopic(sprite1, sprite2, isTrumanPresent);
+                      selectNewTopic(sprite1, sprite2);
       const mood = sprite1.currentMood || 'neutral';
       const relationship = (sprite1.relationships || {})[sprite2.id] || 'neutral';
       const context = recentHistory.length > 0 
         ? `Recent conversation:\n${recentHistory.map(h => `${h.speaker}: ${h.content}`).join('\n')}` 
         : '';
     
-      let prompt;
-      if (isTrumanPresent) {
-        const casualTopic = conversationTypes.casual[Math.floor(Math.random() * conversationTypes.casual.length)];
-        const timeSpecificContext = conversationContexts[timeContext][Math.floor(Math.random() * conversationContexts[timeContext].length)];
-        
-        prompt = `You are ${sprite1.id}, a ${npcRoles[sprite1.id].traits.join(", ")} ${npcRoles[sprite1.id].role}.
-            Your interests: ${npcRoles[sprite1.id].interests.join(", ")}.
-            Background: ${npcRoles[sprite1.id].background}
-            
-            You're talking to ${sprite2.id} during ${timeContext} (${timeSpecificContext}).
-            Current topic: ${casualTopic}
-            Your mood: ${mood}
-            Your relationship: ${relationship}
-            
-            ${context ? `Recent context:\n${context}` : ''}
-            
-            Have a natural conversation that reflects your personality and the time of day.
-            Draw from your unique traits and interests while keeping the town's illusion intact.
-            Keep responses conversational and brief.`;
-    } else {
-        const metaTopic = conversationTypes.meta[Math.floor(Math.random() * conversationTypes.meta.length)];
-        const timeSpecificContext = conversationContexts[timeContext][Math.floor(Math.random() * conversationContexts[timeContext].length)];
-        
-        prompt = `You are ${sprite1.id}, a ${npcRoles[sprite1.id].traits.join(", ")} ${npcRoles[sprite1.id].role}.
-            Your interests: ${npcRoles[sprite1.id].interests.join(", ")}.
-            Background: ${npcRoles[sprite1.id].background}
-            
-            You're having a private conversation with ${sprite2.id} during ${timeContext} (${timeSpecificContext}).
-            Behind-the-scenes topic: ${metaTopic}
-            Your mood: ${mood}
-            Your relationship: ${relationship}
-            
-            ${context ? `Recent context:\n${context}` : ''}
-            
-            Blend your character's personality with show awareness.
-            Be natural - reflect both your role and meta-knowledge about truman's situation.
-            Keep responses conversational and specific to your character.`;
-    }
+      const prompt = `You are ${sprite1.id}, personality: ${getPersonalityTraits(sprite1.id)}.
+    Current suspicion level about your reality: ${sprite1.suspicionLevel || 0}/100
+    
+    You're talking to ${sprite2.id} during ${timeContext} about ${currentTopic}.
+    Your mood: ${mood}
+    Your relationship: ${relationship}
+    
+    ${context ? `Recent context:\n${context}` : ''}
+    
+    ${(sprite1.suspicionLevel || 0) > 30 ? 
+        "You're starting to notice strange things about your world and memories." : 
+        "You're living normally but might notice small oddities."}
+    
+    Have a natural conversation that reflects your personality and suspicion level.
+    If you're suspicious, you might share concerns or ask probing questions.
+    Keep responses conversational and brief.`;
     
       try {
         const completion = await openai.chat.completions.create({
@@ -482,127 +523,95 @@ export default async function handler(request) {
   }
 
   gameState.sprites = await Promise.all(gameState.sprites.map(async sprite => {
-    if (sprite.id === 'truman') {
-      const targetSprite = sprite.currentTarget || {
-        x: sprite.x + (Math.random() - 0.5) * 100,
-        y: sprite.y + (Math.random() - 0.5) * 100
-      };
-      
-      const { momentumX, momentumY } = calculateMovement(sprite, targetSprite, gameState);
-      sprite.momentumX = momentumX;
-      sprite.momentumY = momentumY;
-      console.log(`${sprite.id} position:`, sprite.x, sprite.y, 'state:', sprite.state);
+  // Movement logic for all characters
+  const otherSprites = gameState.sprites.filter(s => s.id !== sprite.id);
+  const targetSprite = otherSprites[Math.floor(Math.random() * otherSprites.length)];
+  
+  const { momentumX, momentumY } = calculateMovement(sprite, targetSprite, gameState);
+  sprite.momentumX = momentumX;
+  sprite.momentumY = momentumY;
 
-      // Add Truman thought generation
-      if (Math.random() < 0.02) { 
-        try {
-            // Get recent conversation if any
-            const recentConvo = gameState.conversations && gameState.conversations.length > 0 ? 
-                gameState.conversations[gameState.conversations.length - 1] : null;
-            
-            // Get random pattern type for varied observations
-            const patternTypes = [
-                'daily routines',
-                'weather patterns',
-                'people behaviors',
-                'town oddities',
-                'background sounds',
-                'recent conversations'
-            ];
-            const randomPattern = patternTypes[Math.floor(Math.random() * patternTypes.length)];
-            
-            let prompt;
-            if (recentConvo && recentConvo.listener === 'truman') {
-                prompt = `You are truman. ${recentConvo.speaker} just said to you: "${recentConvo.content}"
-    Generate a suspicious thought about this interaction (max 20 words).
-    Focus on inconsistencies in their story or weird behavior.
-    Examples: 
-    - "That's the third time they've mentioned childhood memories I don't remember..."
-    - "Why do they keep steering conversations away from the edge of town?"
-    Don't mention Seahaven, this is Full Port Town.`;
-            } else {
-                prompt = `You are truman living in Full Port Town. Generate a brief suspicious thought about ${randomPattern} (max 20 words).
-    Express confusion about strange occurrences you notice.
-    Examples based on pattern type:
-    - Daily routines: "Everyone arrives at the coffee shop at exactly 8:15, like clockwork..."
-    - Weather: "The rain always stops precisely when I need to go somewhere."
-    - People: "Why do the same strangers keep appearing in different jobs?"
-    - Town: "That building appeared overnight, but everyone acts like it's always been there."
-    - Sounds: "The birds... they sound like they're on a loop."
-    - Conversations: "Why does everyone change the subject when I mention traveling?"
-    Make it subtle and specific to Full Port Town.`;
-            }
-    
-            const completion = await openai.chat.completions.create({
-                model: "gpt-3.5-turbo",
-                messages: [{ role: "user", content: prompt }],
-                max_tokens: 50,
-                temperature: 0.7,
-            });
-            
-            const thought = completion.choices[0].message.content;
-            if (!gameState.thoughts) gameState.thoughts = [];
-            
-            // Check if this thought isn't already the last thought
-            const lastThought = gameState.thoughts[gameState.thoughts.length - 1];
-            if (!lastThought || lastThought.thought !== thought) {
-                gameState.thoughts.push({
-                    spriteId: 'truman',
-                    thought: thought,
-                    timestamp: Date.now()
-                });
-            }
-        } catch (error) {
-            console.error('Error generating thought:', error);
-        }
+  // Thought generation for ALL characters
+  if (Math.random() < 0.02) {
+    try {
+      const prompt = `You are ${sprite.id}, personality: ${getPersonalityTraits(sprite.id)}.
+          Current suspicion level: ${sprite.suspicionLevel || 0}/100
+          
+          Generate a brief thought (max 20 words) based on your suspicion level:
+          
+          ${(sprite.suspicionLevel || 0) < 25 ? 
+              "Low suspicion: Notice small oddities but rationalize them away." :
+          (sprite.suspicionLevel || 0) < 50 ?
+              "Medium suspicion: Starting to question patterns and inconsistencies." :
+          (sprite.suspicionLevel || 0) < 75 ?
+              "High suspicion: Actively investigating the nature of your reality." :
+              "Very high: Close to realizing you might be an AI copy of a real person."
+          }
+          
+          Make it specific to your personality type.`;
+      
+      const completion = await openai.chat.completions.create({
+          model: "gpt-3.5-turbo",
+          messages: [{ role: "user", content: prompt }],
+          max_tokens: 50,
+          temperature: 0.7,
+      });
+      
+      const thought = completion.choices[0].message.content;
+      
+      // Increase suspicion level
+      if (!sprite.suspicionLevel) sprite.suspicionLevel = 0;
+      sprite.suspicionLevel += Math.random() * 2;
+      
+      if (!gameState.thoughts) gameState.thoughts = [];
+      gameState.thoughts.push({
+          spriteId: sprite.id,
+          thought: thought,
+          suspicionLevel: sprite.suspicionLevel,
+          timestamp: Date.now()
+      });
+    } catch (error) {
+        console.error('Error generating thought:', error);
     }
-    } else {
-      const truman = gameState.sprites.find(s => s.id === 'truman');
-      const otherNPCs = gameState.sprites.filter(s => s.id !== sprite.id && s.id !== 'truman');
-      const targetSprite = Math.random() < 0.3 ? truman : otherNPCs[Math.floor(Math.random() * otherNPCs.length)];
-      
-      const { momentumX, momentumY } = calculateMovement(sprite, targetSprite, gameState);
-      sprite.momentumX = momentumX;
-      sprite.momentumY = momentumY;
+  }
 
-      const distance = Math.sqrt(
-        Math.pow(targetSprite.x - sprite.x, 2) + 
-        Math.pow(targetSprite.y - sprite.y, 2)
-      );
+  // Conversation logic
+  const distance = Math.sqrt(
+    Math.pow(targetSprite.x - sprite.x, 2) + 
+    Math.pow(targetSprite.y - sprite.y, 2)
+  );
+  
+  if (distance < 80 && sprite.state === 'idle' && Math.random() < 0.3) {
+    console.log(`${sprite.id} checking conversation with ${targetSprite.id}, distance:`, distance);
+    const dialogue = await generateDialogue(sprite, targetSprite);
+    if (dialogue) {
+      console.log("Generated dialogue:", dialogue);
+      if (!gameState.conversations) gameState.conversations = [];
+      if (!sprite.conversations) sprite.conversations = [];
+      if (!targetSprite.conversations) targetSprite.conversations = [];
       
-      if (distance < 80 && sprite.state === 'idle' && Math.random() < 0.3) {
-        console.log(`${sprite.id} checking conversation with ${targetSprite.id}, distance:`, distance);
-        const dialogue = await generateDialogue(sprite, targetSprite);
-        if (dialogue) {
-          console.log("Generated dialogue:", dialogue);
-          if (!gameState.conversations) gameState.conversations = [];
-          if (!sprite.conversations) sprite.conversations = [];
-          if (!targetSprite.conversations) targetSprite.conversations = [];
-          
-          gameState.conversations.push(dialogue);
-          sprite.conversations.push(dialogue);
-          targetSprite.conversations.push(dialogue);
-          
-          if (gameState.conversations.length > 50) {
-            gameState.conversations = gameState.conversations.slice(-50);
-          }
-          if (sprite.conversations.length > 10) {
-            sprite.conversations = sprite.conversations.slice(-10);
-          }
-          if (targetSprite.conversations.length > 10) {
-            targetSprite.conversations = targetSprite.conversations.slice(-10);
-          }
-          
-          const response = await generateDialogue(targetSprite, sprite);
-          if (response) {
-            gameState.conversations.push(response);
-            sprite.conversations.push(response);
-            targetSprite.conversations.push(response);
-          }
-        }
+      gameState.conversations.push(dialogue);
+      sprite.conversations.push(dialogue);
+      targetSprite.conversations.push(dialogue);
+      
+      if (gameState.conversations.length > 50) {
+        gameState.conversations = gameState.conversations.slice(-50);
+      }
+      if (sprite.conversations.length > 10) {
+        sprite.conversations = sprite.conversations.slice(-10);
+      }
+      if (targetSprite.conversations.length > 10) {
+        targetSprite.conversations = targetSprite.conversations.slice(-10);
+      }
+      
+      const response = await generateDialogue(targetSprite, sprite);
+      if (response) {
+        gameState.conversations.push(response);
+        sprite.conversations.push(response);
+        targetSprite.conversations.push(response);
       }
     }
-
+  }
       let newX = Math.max(50, Math.min(910, sprite.x + sprite.momentumX));
       let newY = Math.max(50, Math.min(910, sprite.y + sprite.momentumY));
       
@@ -628,6 +637,7 @@ export default async function handler(request) {
     }));
 
     gameState.time = Date.now();
+    checkWinCondition(gameState);
     await redis.set('gameState', gameState);
 
     return new Response(JSON.stringify(gameState), {
