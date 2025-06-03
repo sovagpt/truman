@@ -38,7 +38,7 @@ function selectNewTopic(sprite1, sprite2) {
 
 function getPersonalityTraits(characterId) {
     const personalities = {
-        'frankdegods': 'NFT creator and entrepreneur, sophisticated, strategic thinker',
+        'frankdegods': 'NFT creator and entrepreneur, scammer, strategic thinker',
         'cupsey': 'Crypto trader and analyst, sharp wit, market-focused mindset',
         'jalen': 'Sports content creator, energetic, competitive personality',
         'orangie': 'Creative content creator, artistic, trend-aware influencer',
