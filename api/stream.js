@@ -109,11 +109,15 @@ export default async function handler(request) {
         thoughts: [],
         currentEvent: null,
         votes: {
-          "Deforest the eastern woods": 0,
-          "Start a fire downtown": 0,
-          "Give Truman internet access": 0,
-          "Remove an NPC permanently": 0
-        },
+  "frankdegods": 0,
+  "cupsey": 0,
+  "jalen": 0,
+  "orangie": 0,
+  "alon": 0,
+  "zachxbt": 0,
+  "west": 0,
+  "assassin": 0
+},
         voteStartTime: Date.now(),
         voteEndTime: Date.now() + (24 * 60 * 60 * 1000),
         activeVoting: true
