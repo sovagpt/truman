@@ -29,20 +29,28 @@ export default async function handler(req) {
     const gameState = await kv.get('gameState');
 
     if (!gameState.activeVoting || Date.now() > gameState.voteEndTime) {
-  // Reset voting every 24 hours but keep cumulative totals
-  gameState.voteStartTime = Date.now();
-  gameState.voteEndTime = Date.now() + (24 * 60 * 60 * 1000);
-  gameState.activeVoting = true;
-}
+      // Reset voting every 24 hours but keep cumulative totals
+      gameState.votes = {
+        "frankdegods": gameState.votes?.frankdegods || 0,
+        "cupsey": gameState.votes?.cupsey || 0,
+        "jalen": gameState.votes?.jalen || 0,
+        "orangie": gameState.votes?.orangie || 0,
+        "alon": gameState.votes?.alon || 0,
+        "zachxbt": gameState.votes?.zachxbt || 0,
+        "west": gameState.votes?.west || 0,
+        "assassin": gameState.votes?.assassin || 0
+      };
+      gameState.voteStartTime = Date.now();
+      gameState.voteEndTime = Date.now() + (24 * 60 * 60 * 1000);
+      gameState.activeVoting = true;
+    }
 
-// Initialize vote count if it doesn't exist
-if (!gameState.votes[option]) {
-  gameState.votes[option] = 0;
-}
+    // Initialize vote count if it doesn't exist
+    if (!gameState.votes[option]) {
+      gameState.votes[option] = 0;
+    }
 
-gameState.votes[option] += 1;
-
-// Remove the auto-conclude logic since we're just tracking bets
+    gameState.votes[option] += 1;
 
     await kv.set('gameState', gameState);
     return new Response(JSON.stringify(gameState.votes), {
