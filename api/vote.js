@@ -27,7 +27,8 @@ async function concludeVoting(gameState) {
 
   if (!winningOption) return null;
 
-  const trumanSprite = gameState.sprites.find(s => s.isUnaware);
+  const allSprites = gameState.sprites.filter(s => s.isUnaware);
+const randomSprite = allSprites[Math.floor(Math.random() * allSprites.length)];
   if (trumanSprite) {
     try {
       const prompt = `You live in Simulife. Write a personal diary thought about ${winningOption}. Share something that strikes you as strange about the town or its people, but try to rationalize it in a natural way. Focus on small oddities that make you question things.`;
@@ -40,14 +41,17 @@ async function concludeVoting(gameState) {
       });
 
       const reaction = completion.choices[0].message.content;
-      trumanSprite.thoughts.push(reaction);
-      trumanSprite.memories.push(`Experienced: ${winningOption}`);
-      
-      gameState.thoughts.push({
-        spriteId: trumanSprite.id,
-        thought: reaction,
-        timestamp: Date.now()
-      });
+      randomSprite.thoughts.push(reaction);
+randomSprite.memories.push(`Experienced: ${winningOption}`);
+if (!randomSprite.suspicionLevel) randomSprite.suspicionLevel = 0;
+randomSprite.suspicionLevel += 10;
+
+gameState.thoughts.push({
+  spriteId: randomSprite.id,
+  thought: reaction,
+  suspicionLevel: randomSprite.suspicionLevel,
+  timestamp: Date.now()
+});
     } catch (error) {
       console.error('Error generating reaction:', error);
     }
@@ -66,10 +70,14 @@ export default async function handler(req) {
     if (!gameState.activeVoting || Date.now() > gameState.voteEndTime) {
       // Reset voting
       gameState.votes = {
-        "Deforest the eastern woods": 0,
-        "Start a fire downtown": 0,
-        "Give Truman internet access": 0,
-        "Remove an NPC permanently": 0
+        "frankdegods": 0,
+  "cupsey": 0,
+  "jalen": 0,
+  "orangie": 0,
+  "alon": 0,
+  "zachxbt": 0,
+  "west": 0,
+  "assassin": 0
       };
       gameState.voteStartTime = Date.now();
       gameState.voteEndTime = Date.now() + (24 * 60 * 60 * 1000);
