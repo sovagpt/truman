@@ -16,108 +16,108 @@ export default async function handler(request) {
     if (!gameState) {
       gameState = {
         sprites: [
-  {
-    id: 'frankdegods',
-    x: 500,
-    y: 500,
-    type: 'FrankDeGodsSprite',
-    isUnaware: true,
-    suspicionLevel: 0,
-    personalityType: 'frankdegods',
-    thoughts: [],
-    memories: []
-  },
-  {
-    id: 'cupsey',
-    x: 450,
-    y: 450,
-    type: 'CupseySprite',
-    isUnaware: true,
-    suspicionLevel: 0,
-    personalityType: 'cupsey',
-    thoughts: [],
-    memories: []
-  },
-  {
-    id: 'jalen',
-    x: 550,
-    y: 550,
-    type: 'JalenSprite',
-    isUnaware: true,
-    suspicionLevel: 0,
-    personalityType: 'jalen',
-    thoughts: [],
-    memories: []
-  },
-  {
-    id: 'orangie',
-    x: 400,
-    y: 500,
-    type: 'OrangieSprite',
-    isUnaware: true,
-    suspicionLevel: 0,
-    personalityType: 'orangie',
-    thoughts: [],
-    memories: []
-  },
-  {
-    id: 'alon',
-    x: 600,
-    y: 400,
-    type: 'AlonSprite',
-    isUnaware: true,
-    suspicionLevel: 0,
-    personalityType: 'alon',
-    thoughts: [],
-    memories: []
-  },
-  {
-    id: 'zachxbt',
-    x: 500,
-    y: 600,
-    type: 'ZachXBTSprite',
-    isUnaware: true,
-    suspicionLevel: 0,
-    personalityType: 'zachxbt',
-    thoughts: [],
-    memories: []
-  },
-  {
-    id: 'west',
-    x: 350,
-    y: 350,
-    type: 'WestSprite',
-    isUnaware: true,
-    suspicionLevel: 0,
-    personalityType: 'west',
-    thoughts: [],
-    memories: []
-  },
-  {
-    id: 'assassin',
-    x: 650,
-    y: 650,
-    type: 'AssassinSprite',
-    isUnaware: true,
-    suspicionLevel: 0,
-    personalityType: 'assassin',
-    thoughts: [],
-    memories: []
-  }
-],
+          {
+            id: 'frankdegods',
+            x: 500,
+            y: 500,
+            type: 'FrankDeGodsSprite',
+            isUnaware: true,
+            suspicionLevel: 0,
+            personalityType: 'frankdegods',
+            thoughts: [],
+            memories: []
+          },
+          {
+            id: 'cupsey',
+            x: 450,
+            y: 450,
+            type: 'CupseySprite',
+            isUnaware: true,
+            suspicionLevel: 0,
+            personalityType: 'cupsey',
+            thoughts: [],
+            memories: []
+          },
+          {
+            id: 'jalen',
+            x: 550,
+            y: 550,
+            type: 'JalenSprite',
+            isUnaware: true,
+            suspicionLevel: 0,
+            personalityType: 'jalen',
+            thoughts: [],
+            memories: []
+          },
+          {
+            id: 'orangie',
+            x: 400,
+            y: 500,
+            type: 'OrangieSprite',
+            isUnaware: true,
+            suspicionLevel: 0,
+            personalityType: 'orangie',
+            thoughts: [],
+            memories: []
+          },
+          {
+            id: 'alon',
+            x: 600,
+            y: 400,
+            type: 'AlonSprite',
+            isUnaware: true,
+            suspicionLevel: 0,
+            personalityType: 'alon',
+            thoughts: [],
+            memories: []
+          },
+          {
+            id: 'zachxbt',
+            x: 500,
+            y: 600,
+            type: 'ZachXBTSprite',
+            isUnaware: true,
+            suspicionLevel: 0,
+            personalityType: 'zachxbt',
+            thoughts: [],
+            memories: []
+          },
+          {
+            id: 'west',
+            x: 350,
+            y: 350,
+            type: 'WestSprite',
+            isUnaware: true,
+            suspicionLevel: 0,
+            personalityType: 'west',
+            thoughts: [],
+            memories: []
+          },
+          {
+            id: 'assassin',
+            x: 650,
+            y: 650,
+            type: 'AssassinSprite',
+            isUnaware: true,
+            suspicionLevel: 0,
+            personalityType: 'assassin',
+            thoughts: [],
+            memories: []
+          }
+        ],
         time: Date.now(),
         thoughts: [],
         currentEvent: null,
         votes: {
-  "frankdegods": 0,
-  "cupsey": 0,
-  "jalen": 0,
-  "orangie": 0,
-  "alon": 0,
-  "zachxbt": 0,
-  "west": 0,
-  "assassin": 0
-},
+          "frankdegods": 0,
+          "cupsey": 0,
+          "jalen": 0,
+          "orangie": 0,
+          "alon": 0,
+          "zachxbt": 0,
+          "west": 0,
+          "assassin": 0
+        },
         voteStartTime: Date.now(),
         voteEndTime: Date.now() + (24 * 60 * 60 * 1000),
         activeVoting: true
