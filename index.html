@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SeaHavenGPT | The AI Show live on Pump.fun</title>
+    <title>The Kol Show | The AI Show live on Pump.fun</title>
     <link rel="icon" type="image/gif" href="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/67a411d2eb4c1064f3b116f1_truman.gif">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <style>
@@ -706,16 +706,16 @@
             <div id="voting-content"></div>
         </div>
         <div class="terminal-section">
-            <h2>TERMINAL OF TRUMAN THOUGHTS</h2>
+            <h2>TERMINAL OF KOL THOUGHTS</h2>
             <div id="thoughts-content"></div>
         </div>
     </div>
     <div id="tutorialTerminal">
         <button class="close-tutorial" onclick="toggleTutorial()">×</button>
         <div class="tutorial-section">
-            <h2>WELCOME TO SeaHavenGPT</h2>
+            <h2>WELCOME TO The Kol Show</h2>
             <div class="tutorial-content">
-                Welcome to SeaHavenGPT, a simulated environment where one NPC lives in blissful ignorance of their AI nature, while seven others maintain this carefully crafted illusion.
+                Welcome to The Kol Show, a simulated environment where all NPCs lives in blissful ignorance of their AI nature, while seven others maintain this carefully crafted illusion.
             </div>
         </div>
         <div class="tutorial-section">
@@ -745,7 +745,7 @@
                 • Major Event Voting: Shape town events<br>
                 • truman's Thoughts: Live consciousness feed<br>
                 • NPC Interactions: Real-time conversations<br>
-                • World Exploration: Explore SeaHavenGPT
+                • World Exploration: Explore The Kol Show
             </div>
         </div>
         <div class="tutorial-section">
@@ -865,7 +865,7 @@ window.addEventListener('load', async () => {
         <a href="https://github.com/a16z-infra/ai-town" target="_blank">
             <img src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/67a1585eb63c5a0a5602efba_GitHub.png" alt="GitHub" class="social-button">
         </a>
-        <a href="https://x.com/SeaHavenGPT" target="_blank">
+        <a href="https://x.com/The Kol Show" target="_blank">
             <img src="https://cdn.prod.website-files.com/674396c59212c6ea348b24e0/67a1585e6bd612599357a983_X.png" alt="Twitter" class="social-button">
         </a>
         <a href="https://pump.fun/coin/AhQcVmyzPJhxcwiaf9sLFZyzNsZubQSyTcL1gtvwpump" target="_blank">
@@ -1247,7 +1247,22 @@ function showThoughtHistory(spriteData) {
         `;
     });
 
-    profile.innerHTML = `
+    // Calculate suspicion level and status
+const suspicionLevel = spriteData.suspicionLevel || 0;
+const suspicionPercent = Math.round(suspicionLevel);
+const suspicionStatus = 
+    suspicionPercent < 25 ? "Unaware" :
+    suspicionPercent < 50 ? "Slightly Suspicious" :
+    suspicionPercent < 75 ? "Highly Suspicious" :
+    suspicionPercent < 100 ? "Almost Awakened" : "AWAKENED";
+
+const suspicionColor = 
+    suspicionPercent < 25 ? "#4CAF50" :
+    suspicionPercent < 50 ? "#FFC107" :
+    suspicionPercent < 75 ? "#FF9800" :
+    suspicionPercent < 100 ? "#F44336" : "#9C27B0";
+
+profile.innerHTML = `
     <div class="npc-header">
         <span>${displayName}</span>
         <button class="npc-close" onclick="this.parentElement.parentElement.remove()">×</button>
@@ -1267,6 +1282,35 @@ function showThoughtHistory(spriteData) {
             ${npcDescription}
         </div>
     </div>
+    <div class="suspicion-tracker" style="
+        background: #f0f0f0;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 8px;
+        border: 2px solid #8b4513;
+    ">
+        <div style="font-weight: bold; margin-bottom: 10px; color: #8b4513;">
+            AWARENESS LEVEL
+        </div>
+        <div style="
+            background: #ddd;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        ">
+            <div style="
+                background: ${suspicionColor};
+                height: 100%;
+                width: ${suspicionPercent}%;
+                transition: width 0.3s ease;
+            "></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.9em;">
+            <span style="color: ${suspicionColor}; font-weight: bold;">${suspicionStatus}</span>
+            <span>${suspicionPercent}%</span>
+        </div>
+    </div>
     <div class="npc-conversations">
         ${conversationHistory.join('')}
     </div>
@@ -1277,21 +1321,18 @@ function showThoughtHistory(spriteData) {
 }
 
 function getNPCDescription(id) {
-    if (id === 'truman') {
-        return "A curious individual who's beginning to question the nature of reality. Unaware of the true nature of SeaHavenGPT.";
-    }
-    
     const descriptions = {
-        sarah: "A wise village elder who helps maintain the illusion. Often gives philosophical advice.",
-        michael: "The local shopkeeper who keeps track of SeaHavenGPT's activities.",
-        emma: "A friendly neighbor who specializes in distracting truman from suspicious events.",
-        james: "The town's historian who helps create and maintain backstories for SeaHavenGPT.",
-        olivia: "A scientist working on maintaining the simulation's stability within SeaHavenGPT.",
-        william: "The local gardener who ensures SeaHavenGPT looks natural and perfect.",
-        sophia: "A wandering storyteller who helps reinforce SeaHavenGPT's narrative."
+        frankdegods: "NFT creator and entrepreneur. Sophisticated strategic thinker, unaware of their AI nature.",
+        cupsey: "Crypto trader and analyst. Sharp wit and market-focused mindset, questioning reality.",
+        jalen: "Sports content creator. Energetic competitive personality, starting to notice oddities.",
+        orangie: "Creative content creator. Artistic and trend-aware, sensing something is off.",
+        alon: "Tech entrepreneur and investor. Analytical forward-thinking mind, investigating inconsistencies.",
+        zachxbt: "Blockchain investigator. Detail-oriented truth-seeker, close to discovering the truth.",
+        west: "Cultural commentator. Philosophical observant critic, questioning the nature of reality.",
+        assassin: "Mysterious internet figure. Secretive and calculating, suspecting their true nature."
     };
 
-    return descriptions[id] || "A mysterious resident of SeaHavenGPT.";
+    return descriptions[id] || "A mysterious AI copy of an internet personality.";
 }
 
 async function initGame() {
