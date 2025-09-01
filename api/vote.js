@@ -35,7 +35,7 @@ export default async function handler(req) {
         "cupsey": gameState.votes?.cupsey || 0,
         "jalen": gameState.votes?.jalen || 0,
         "orangie": gameState.votes?.orangie || 0,
-        "alon": gameState.votes?.alon || 0,
+        "baoskee": gameState.votes?.baoskee || 0,
         "zachxbt": gameState.votes?.zachxbt || 0,
         "west": gameState.votes?.west || 0,
         "assassin": gameState.votes?.assassin || 0
@@ -69,3 +69,4 @@ export default async function handler(req) {
     });
   }
 }
+
