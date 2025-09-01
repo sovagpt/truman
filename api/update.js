@@ -42,7 +42,7 @@ function getPersonalityTraits(characterId) {
         'cupsey': 'Crypto trader and analyst, sharp wit, market-focused mindset',
         'jalen': 'Sports content creator, energetic, competitive personality',
         'orangie': 'Creative content creator, artistic, trend-aware influencer',
-        'alon': 'Tech entrepreneur and investor, analytical, forward-thinking',
+        'baoskee': 'Tech entrepreneur and investor, analytical, forward-thinking',
         'zachxbt': 'Blockchain investigator, detail-oriented, truth-seeking researcher',
         'west': 'Cultural commentator, philosophical, observant social critic',
         'assassin': 'Mysterious internet figure, secretive, observant and calculating'
@@ -598,3 +598,4 @@ export default async function handler(request) {
     })
   }
 }
+
