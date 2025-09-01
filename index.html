@@ -43,6 +43,34 @@
     z-index: 2000;
 }
 
+        .npc-title-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.twitter-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.twitter-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.twitter-icon {
+    width: 20px;
+    height: 20px;
+}
+
 #tutorialTerminal {
     position: fixed;
     left: 50%;
@@ -812,6 +840,17 @@
     </div>
     <script>
 
+        const characterTwitterHandles = {
+    'frankdegods': 'frankdegods',
+    'cupsey': 'cupsey',
+    'jalen': 'jalenramsey20',
+    'orangie': 'orangie', 
+    'baoskee': 'baoskee',
+    'zachxbt': 'zachxbt',
+    'west': 'westbtc',
+    'assassin': 'assassinxbt'
+};
+
     function initMinimap() {
     const mainCanvas = document.getElementById('mapCanvas');
     const minimapCanvas = document.getElementById('minimap-canvas');
@@ -1300,9 +1339,16 @@ const suspicionColor =
 
 profile.innerHTML = `
     <div class="npc-header">
+    <div class="npc-title-section">
         <span>${displayName}</span>
-        <button class="npc-close" onclick="this.parentElement.parentElement.remove()">×</button>
+        ${characterTwitterHandles[spriteData.id] ? `
+            <a href="https://twitter.com/${characterTwitterHandles[spriteData.id]}" target="_blank" class="twitter-button">
+                <img src="https://cdn.prod.website-files.com/6740d85c4e3daeef29a89470/68a663251731174a3dc255f1_689178ebf786d570b0c29520_tw%20(1).png" alt="Twitter" class="twitter-icon">
+            </a>
+        ` : ''}
     </div>
+    <button class="npc-close" onclick="this.parentElement.parentElement.remove()">×</button>
+</div>
     <div class="npc-content">
         <div class="npc-sprite-preview">
             <div class="sprite" style="
@@ -1795,6 +1841,7 @@ function showSpeechBubble(spriteId, text) {
     </script>
 </body>
 </html>
+
 
 
 
