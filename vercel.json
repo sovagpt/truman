@@ -15,6 +15,10 @@
       "dest": "/public/$1/$2"
     },
     {
+      "src": "/docs",
+      "dest": "/docs.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/$1"
     }
