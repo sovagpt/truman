@@ -61,13 +61,13 @@ export default async function handler(request) {
             memories: []
           },
           {
-            id: 'alon',
+            id: 'baoskee',
             x: 600,
             y: 400,
             type: 'AlonSprite',
             isUnaware: true,
             suspicionLevel: 0,
-            personalityType: 'alon',
+            personalityType: 'baoskee',
             thoughts: [],
             memories: []
           },
@@ -113,7 +113,7 @@ export default async function handler(request) {
           "cupsey": 0,
           "jalen": 0,
           "orangie": 0,
-          "alon": 0,
+          "baoskee": 0,
           "zachxbt": 0,
           "west": 0,
           "assassin": 0
@@ -151,3 +151,4 @@ export default async function handler(request) {
     })
   }
 }
+
