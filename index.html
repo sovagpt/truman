@@ -1780,7 +1780,7 @@ function updateVotingDisplay() {
             <div style="margin-bottom: 10px">剩余时间：${hoursLeft} 小时</div>
             ${Object.entries(gameState.votes).map(([option, count]) => `
                 <div style="margin: 5px 0; text-align: center;">
-                    <button onclick="vote('${option}')" class="vote-btn">${option}</button>
+                    <button onclick="vote('${option}')" class="vote-btn">${getDisplayName(option)}</button>
                     <div style="margin-top: 5px;">${count || 0} 票数</div>
                 </div>
             `).join('')}
@@ -1860,4 +1860,5 @@ function showSpeechBubble(spriteId, text) {
     </script>
 </body>
 </html>
+
 
