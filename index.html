@@ -744,35 +744,35 @@
     <div class="character-bar">
         <div class="character-slot" data-character="frankdegods" onclick="focusCharacter('frankdegods')">
             <div class="character-sprite" style="background-image: url('/sprites/FrankDeGodsSprite.png')"></div>
-            <div class="character-name">FRANK</div>
+            <div class="character-name">Zhihao</div>
         </div>
         <div class="character-slot" data-character="cupsey" onclick="focusCharacter('cupsey')">
             <div class="character-sprite" style="background-image: url('/sprites/CupseySprite.png')"></div>
-            <div class="character-name">CUPSEY</div>
+            <div class="character-name">Lingxi</div>
         </div>
         <div class="character-slot" data-character="jalen" onclick="focusCharacter('jalen')">
             <div class="character-sprite" style="background-image: url('/sprites/JalenSprite.png')"></div>
-            <div class="character-name">JALEN</div>
+            <div class="character-name">Haoran</div>
         </div>
         <div class="character-slot" data-character="orangie" onclick="focusCharacter('orangie')">
             <div class="character-sprite" style="background-image: url('/sprites/OrangieSprite.png')"></div>
-            <div class="character-name">ORANGIE</div>
+            <div class="character-name">Xingyao</div>
         </div>
         <div class="character-slot" data-character="baoskee" onclick="focusCharacter('baoskee')">
             <div class="character-sprite" style="background-image: url('/sprites/AlonSprite.png')"></div>
-            <div class="character-name">baoskee</div>
+            <div class="character-name">Yuchen</div>
         </div>
         <div class="character-slot" data-character="zachxbt" onclick="focusCharacter('zachxbt')">
             <div class="character-sprite" style="background-image: url('/sprites/ZachXBTSprite.png')"></div>
-            <div class="character-name">ZACHXBT</div>
+            <div class="character-name">Zeyan</div>
         </div>
         <div class="character-slot" data-character="west" onclick="focusCharacter('west')">
             <div class="character-sprite" style="background-image: url('/sprites/WestSprite.png')"></div>
-            <div class="character-name">WEST</div>
+            <div class="character-name">Xizhe</div>
         </div>
         <div class="character-slot" data-character="assassin" onclick="focusCharacter('assassin')">
             <div class="character-sprite" style="background-image: url('/sprites/AssassinSprite.png')"></div>
-            <div class="character-name">ASSASSIN</div>
+            <div class="character-name">Youling</div>
         </div>
     </div>
     
@@ -840,16 +840,24 @@
     </div>
     <script>
 
-        const characterTwitterHandles = {
-    'frankdegods': 'LLMFrank',
-    'cupsey': 'LLMCupsey',
-    'jalen': 'LLMJalen',
-    'orangie': 'LLMOrangie', 
-    'baoskee': 'LLMBaoskee',
-    'zachxbt': 'LLMZachXBT',
-    'west': 'LLMWestt',
-    'assassin': 'LLMAssassin'
+        \1
+
+const displayNameMap = {
+  frankdegods: 'Zhihao',
+  cupsey: 'Lingxi',
+  jalen: 'Haoran',
+  orangie: 'Xingyao',
+  baoskee: 'Yuchen',
+  alon: 'Yuchen',
+  zachxbt: 'Zeyan',
+  west: 'Xizhe',
+  assassin: 'Youling',
+  truman: 'Truman'
 };
+
+function getDisplayName(id) {
+  return displayNameMap[id] || id;
+}
 
     function initMinimap() {
     const mainCanvas = document.getElementById('mapCanvas');
@@ -1270,7 +1278,7 @@ function showThoughtHistory(spriteData) {
         existingProfile.remove();
     }
 
-    const displayName = spriteData.id === 'truman' ? 'truman' : spriteData.id.toUpperCase();
+    const displayName = getDisplayName(spriteData.id);
 
     // Create new profile container
     const profile = document.createElement('div');
@@ -1292,8 +1300,8 @@ function showThoughtHistory(spriteData) {
         const isOutgoing = conv.speaker === spriteData.id;
         
         // Replace "truman" with "truman" in conversation labels
-        let speakerName = conv.speaker;
-        let listenerName = conv.listener;
+        let speakerName = getDisplayName(conv.speaker);
+        let listenerName = getDisplayName(conv.listener);
         
         if (speakerName === 'truman') speakerName = 'truman';
         if (listenerName === 'truman') listenerName = 'truman';
