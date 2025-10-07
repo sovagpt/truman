@@ -2,6 +2,24 @@
 import { Redis } from '@upstash/redis'
 import OpenAI from 'openai';
 
+const displayNameMap = {
+  frankdegods: 'Zhihao',
+  cupsey: 'Lingxi',
+  jalen: 'Haoran',
+  orangie: 'Xingyao',
+  alon: 'Yuchen',
+  baoskee: 'Yuchen',
+  zachxbt: 'Zeyan',
+  west: 'Xizhe',
+  assassin: 'Youling',
+  truman: 'Truman'
+};
+
+function getDisplayName(id) {
+  return displayNameMap[id] || id;
+}
+
+
 const UPDATE_FREQUENCY = 0.3;
 const npcNames = ['cupsey', 'jalen', 'orangie', 'alon', 'zachxbt', 'west', 'assassin'];
 
@@ -402,10 +420,11 @@ export default async function handler(request) {
         ? `Recent conversation:\n${recentHistory.map(h => `${h.speaker}: ${h.content}`).join('\n')}` 
         : '';
     
-      const prompt = `You are ${sprite1.id}, personality: ${getPersonalityTraits(sprite1.id)}.
-          Current suspicion level about your reality: ${sprite1.suspicionLevel || 0}/100
-          
-          You're talking to ${sprite2.id} during ${timeContext} about ${currentTopic}.
+      const prompt = `你是 ${getDisplayName(sprite1.id)}，人物特质：${getPersonalityTraits(sprite1.id)}。
+    当前怀疑程度：${sprite1.suspicionLevel || 0}/100
+    
+    现在在${timeContext}与 ${getDisplayName(sprite2.id)} 聊天，话题：${currentTopic}。
+
           Your mood: ${mood}
           Your relationship: ${relationship}
           
@@ -476,8 +495,8 @@ export default async function handler(request) {
     // Thought generation for ALL characters
     if (Math.random() < 0.02) {
       try {
-        const prompt = `You are ${sprite.id}, personality: ${getPersonalityTraits(sprite.id)}.
-            Current suspicion level: ${sprite.suspicionLevel || 0}/100
+        const prompt = `你是 ${getDisplayName(sprite.id)}，人物特质：${getPersonalityTraits(sprite.id)}。
+    当前怀疑程度：${sprite.suspicionLevel || 0}/100
             
             Generate a brief thought (max 20 words) based on your suspicion level:
             
@@ -598,4 +617,5 @@ export default async function handler(request) {
     })
   }
 }
+
 
