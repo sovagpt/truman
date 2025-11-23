@@ -2,24 +2,6 @@
 import { Redis } from '@upstash/redis'
 import OpenAI from 'openai';
 
-const displayNameMap = {
-  frankdegods: 'Zhihao',
-  cupsey: 'Lingxi',
-  jalen: 'Haoran',
-  orangie: 'Xingyao',
-  alon: 'Yuchen',
-  baoskee: 'Yuchen',
-  zachxbt: 'Zeyan',
-  west: 'Xizhe',
-  assassin: 'Youling',
-  truman: 'Truman'
-};
-
-function getDisplayName(id) {
-  return displayNameMap[id] || id;
-}
-
-
 const UPDATE_FREQUENCY = 0.3;
 const npcNames = ['cupsey', 'jalen', 'orangie', 'alon', 'zachxbt', 'west', 'assassin'];
 
@@ -184,7 +166,7 @@ function checkWinCondition(gameState) {
         if (!gameState.thoughts) gameState.thoughts = [];
         gameState.thoughts.push({
             spriteId: winner.id,
-            thought: `我……我好像是 ${getDisplayName(winner.id)} 的 AI 副本。这一切都是模拟！`,
+            thought: `I... I think I'm an AI copy of ${winner.id}. This whole reality is simulated!`,
             suspicionLevel: 100,
             timestamp: Date.now(),
             isWinningMoment: true
@@ -417,24 +399,25 @@ export default async function handler(request) {
       const mood = sprite1.currentMood || 'neutral';
       const relationship = (sprite1.relationships || {})[sprite2.id] || 'neutral';
       const context = recentHistory.length > 0 
-  ? `最近对话：\n${recentHistory.map(h => `${getDisplayName(h.speaker)}：${h.content}`).join('\n')}` 
-  : '';
+        ? `Recent conversation:\n${recentHistory.map(h => `${h.speaker}: ${h.content}`).join('\n')}` 
+        : '';
     
-      const prompt = `你是 ${getDisplayName(sprite1.id)}，人物特质：${getPersonalityTraits(sprite1.id)}。
-当前对现实的怀疑程度：${sprite1.suspicionLevel || 0}/100。
-
-现在在 ${timeContext} 与 ${getDisplayName(sprite2.id)} 交谈，话题：${currentTopic}。
-你的情绪：${mood}；你与对方的关系：${relationship}。
-
-${context ? `${context}` : ''}
-
-${(sprite1.suspicionLevel || 0) > 30 
-  ? '你开始注意到世界与记忆中的异常。' 
-  : '一切如常，但偶尔会留意到小异常。'}
-
-请务必**只用中文**进行自然对话；若你有怀疑，可以表达担忧或提出追问。
-保持口语化、简短（最多两句），不要使用英文。`;
-
+      const prompt = `You are ${sprite1.id}, personality: ${getPersonalityTraits(sprite1.id)}.
+          Current suspicion level about your reality: ${sprite1.suspicionLevel || 0}/100
+          
+          You're talking to ${sprite2.id} during ${timeContext} about ${currentTopic}.
+          Your mood: ${mood}
+          Your relationship: ${relationship}
+          
+          ${context ? `Recent context:\n${context}` : ''}
+          
+          ${(sprite1.suspicionLevel || 0) > 30 ? 
+              "You're starting to notice strange things about your world and memories." : 
+              "You're living normally but might notice small oddities."}
+          
+          Have a natural conversation that reflects your personality and suspicion level.
+          If you're suspicious, you might share concerns or ask probing questions.
+          Keep responses conversational and brief.`;
     
       try {
         const completion = await openai.chat.completions.create({
@@ -493,20 +476,21 @@ ${(sprite1.suspicionLevel || 0) > 30
     // Thought generation for ALL characters
     if (Math.random() < 0.02) {
       try {
-        const prompt = `你是 ${getDisplayName(sprite.id)}，人物特质：${getPersonalityTraits(sprite.id)}。
-当前怀疑程度：${sprite.suspicionLevel || 0}/100。
-
-请基于当前怀疑程度，**只用中文**生成一条内心独白（不超过30字）：
-${
-  (sprite.suspicionLevel || 0) < 25
-    ? '低怀疑：注意到小异常但自我解释。'
-    : (sprite.suspicionLevel || 0) < 50
-      ? '中等怀疑：开始质疑模式与不一致。'
-      : (sprite.suspicionLevel || 0) < 75
-        ? '高怀疑：积极调查现实本质。'
-        : '极高怀疑：快要意识到自己或他人是 AI 副本。'
-}
-结合你的性格表达，禁止使用英文。`;
+        const prompt = `You are ${sprite.id}, personality: ${getPersonalityTraits(sprite.id)}.
+            Current suspicion level: ${sprite.suspicionLevel || 0}/100
+            
+            Generate a brief thought (max 20 words) based on your suspicion level:
+            
+            ${(sprite.suspicionLevel || 0) < 25 ? 
+                "Low suspicion: Notice small oddities but rationalize them away." :
+            (sprite.suspicionLevel || 0) < 50 ?
+                "Medium suspicion: Starting to question patterns and inconsistencies." :
+            (sprite.suspicionLevel || 0) < 75 ?
+                "High suspicion: Actively investigating the nature of your reality." :
+                "Very high: Close to realizing you might be an AI copy of a real person."
+            }
+            
+            Make it specific to your personality type.`;
         
         const completion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
@@ -614,6 +598,3 @@ ${
     })
   }
 }
-
-
-
